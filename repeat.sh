@@ -1,13 +1,16 @@
 #!/bin/bash
-
-
 # run a command multiple times with sleep in between
+
+
+#default values
+timeout=5
+repetitions=6
 
 
 function USAGE {
     echo "wrong parameters"
     echo "run the command without any parameter or"
-    echo "    -t (time between each repetition in seconds)"
+    echo "    -t (time between each repetition in sec" 
     echo "    -n (number of repetitions)"
 }
 
@@ -29,3 +32,11 @@ done
 
 
 echo "time: $timeout repeat: $repetitions"
+
+echo "$final_range"; echo
+
+for ((i = 1; i <= $repetitions; i++)); do
+    echo $OPTIND
+    "$@"
+    sleep "$timeout"
+done
