@@ -15,13 +15,17 @@ function USAGE {
 }
 
 
+arguments_number=0
+
 while getopts "t:n:" option; do
     case ${option} in
         t)
             timeout="${OPTARG}"
+            arguments_number=$((arguments_number + 2))
             ;;
         n)
             repetitions="${OPTARG}"
+            arguments_number=$((arguments_number + 2))
             ;;
         ?)
             USAGE
@@ -30,13 +34,18 @@ while getopts "t:n:" option; do
     esac
 done
 
+((arguments_number + 1))
 
 echo "time: $timeout repeat: $repetitions"
 
-echo "$final_range"; echo
+echo "argument number: $arguments_number"; echo
 
-for ((i = 1; i <= $repetitions; i++)); do
-    echo $OPTIND
-    "$@"
+for ((i = 1; i <= repetitions; i++)); do
+    echo "optind: $OPTIND"
+    echo "dolar hvezda: $*"
+    echo "dolar at: $@"
+    only_command=$("$* | cut -d ' ' -f $arguments_number-") 
+    echo $only_command
     sleep "$timeout"
+    echo
 done
