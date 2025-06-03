@@ -34,18 +34,14 @@ while getopts "t:n:" option; do
     esac
 done
 
-((arguments_number + 1))
-
-echo "time: $timeout repeat: $repetitions"
-
-echo "argument number: $arguments_number"; echo
 
 for ((i = 1; i <= repetitions; i++)); do
-    echo "optind: $OPTIND"
-    echo "dolar hvezda: $*"
-    echo "dolar at: $@"
-    only_command=$("$* | cut -d ' ' -f $arguments_number-") 
-    echo $only_command
+    if [[ $arguments_number -gt 0 ]]; then
+        only_command=$(echo "$@" | cut -d ' ' -f $arguments_number-)
+        $only_command
+    else
+        "$@"
+    fi
     sleep "$timeout"
     echo
 done
