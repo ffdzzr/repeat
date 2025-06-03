@@ -15,7 +15,7 @@ function USAGE {
 }
 
 
-arguments_number=1
+arguments_number=0
 
 while getopts "t:n:" option; do
     case ${option} in
@@ -36,7 +36,7 @@ done
 
 
 for ((i = 1; i <= repetitions; i++)); do
-    if [[ $arguments_number -gt 1 ]]; then
+    if [[ $arguments_number -gt 0 ]]; then
         only_command=$(echo "$@" | cut -d ' ' -f $arguments_number-)
         $only_command
     else
