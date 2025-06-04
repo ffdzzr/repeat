@@ -45,4 +45,3 @@ for ((i = 1; i <= repetitions; i++)); do
     fi
     echo
 done
-
