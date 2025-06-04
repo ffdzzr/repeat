@@ -19,7 +19,7 @@ This script could be used in situations where you need to:
 ```
 
 ### Default:
-- -t 5
+- -t 10 
 - -n 6
 
 ## Examples
