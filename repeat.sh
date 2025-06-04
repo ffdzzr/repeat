@@ -3,7 +3,7 @@
 
 
 #default values
-timeout=5
+delay=5
 repetitions=6
 
 
@@ -20,7 +20,7 @@ arguments_number=0
 while getopts "t:n:" option; do
     case ${option} in
         t)
-            timeout="${OPTARG}"
+            delay="${OPTARG}"
             arguments_number=$((arguments_number + 2))
             ;;
         n)
@@ -43,7 +43,7 @@ for ((i = 1; i <= repetitions; i++)); do
         "$@"
     fi
     if [[ $i -ne $repetitions ]]; then    
-        sleep "$timeout"
+        sleep "$delay"
     fi
     echo
 done
