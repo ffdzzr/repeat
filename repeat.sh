@@ -2,6 +2,8 @@
 # run a command multiple times with sleep in between
 
 
+# INIT
+{
 #default values
 delay=10
 repetitions=6
@@ -30,8 +32,11 @@ while getopts "t:n:" option; do
     esac
 done
 shift $((OPTIND - 1))
+}
 
 
+# MAIN
+{
 if [[ "$#" -eq 0 ]]; then
     echo "this command doesn't work without giving it anything to repeat"
     exit 1
@@ -45,3 +50,5 @@ for ((i = 1; i <= repetitions; i++)); do
     fi
     echo
 done
+}
+
